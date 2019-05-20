@@ -23,7 +23,7 @@ module.exports = {
 
     console.log("This part works");
     await Theme.create({
-      name: "test_03"
+      name: "test_05"
     });
 
     var themes = await Theme.find();

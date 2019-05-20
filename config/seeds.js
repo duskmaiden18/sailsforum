@@ -10,7 +10,7 @@
 module.exports.seeds = {
   theme: [
     {
-      name: "test_01",
+      name: "test_02",
     }
   ]
 };

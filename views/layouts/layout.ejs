@@ -46,35 +46,35 @@
 <body>
 <div id="page-wrap">
   <header id="page-header"
-          class="navbar navbar-expand-sm navbar-dark bg-dark flex-column flex-md-row justify-content-between">
-    <a class="navbar-brand mr-0" href="/"><img class="logo" alt="NEW_APP_NAME logo" src="/images/logo.png"/></a>
+          class="navbar navbar-expand-sm navbar-dark bg-info flex-column flex-md-row justify-content-between">
+    <a class="navbar-brand mr-0" href="/">FORUM</a>
     <div class="navbar-nav flex-row">
       <!-- LOGGED-IN NAVIGATION -->
       <% if(me) { %>
-        <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0" href="/contact">Help</a>
-        <a href="/" class="nav-item nav-link ml-2 ,ml-md-0 mr-2 mr-md-0">Themes</a>
+        <a class="nav-item nav-link ml-2 ml-md-0 mr-2 mr-md-0 text-white" href="/contact">Help</a>
+        <a href="/" class="nav-item nav-link ml-2 ,ml-md-0 mr-2 mr-md-0 text-white">Themes</a>
         <!-- Only in desktop nav -->
         <div class="nav-item dropdown d-none d-sm-block">
-          <a class="nav-link dropdown-toggle" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true"
+          <a class="nav-link dropdown-toggle text-white" id="header-account-menu-link" data-toggle="dropdown" aria-haspopup="true"
              aria-expanded="false">Account</a>
-          <div class="dropdown-menu account-menu" aria-labelledby="header-account-menu-link">
-            <a class="dropdown-item" href="/account">Settings</a>
-            <a class="dropdown-item" href="/logout">Sign out</a>
+          <div class="dropdown-menu account-menu bg-info " aria-labelledby="header-account-menu-link">
+            <a class="dropdown-item text-white" href="/account">Settings</a>
+            <a class="dropdown-item text-white" href="/logout">Sign out</a>
           </div>
         </div>
         <!-- Only in mobile nav -->
-        <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/account">Account Settings</a>
-        <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none" href="/logout">Sign out</a>
+        <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none text-white" href="/account">Account Settings</a>
+        <a class="nav-item nav-link ml-2 mr-2 d-block d-sm-none text-white" href="/logout">Sign out</a>
       <% } else { %>
         <!-- LOGGED-OUT NAVIGATION -->
-        <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/faq">FAQ</a>
-        <a class="nav-item nav-link ml-2 ml-md-0 mr-2" href="/login">Log in</a>
+        <a class="nav-item nav-link ml-2 ml-md-0 mr-2 text-white" href="/faq">FAQ</a>
+        <a class="nav-item nav-link ml-2 ml-md-0 mr-2 text-white" href="/login">Log in</a>
         <!-- Only in desktop nav -->
         <div class="form-inline d-none ml-2 d-md-block">
-          <a class="btn btn-outline-info" href="/signup">Sign up</a>
+          <a class="btn btn-outline-light text-white" href="/signup">Sign up</a>
         </div>
         <!-- Only in mobile nav -->
-        <a class="nav-item nav-link text-info ml-2 d-block d-md-none" href="/signup">Sign up</a>
+        <a class="nav-item nav-link text-white ml-2 d-block d-md-none" href="/signup">Sign up</a>
       <% } %>
     </div>
   </header>
@@ -112,7 +112,7 @@
       <% } %>
     </div>
     <small class="copy">Copyright &copy; 2018 <a target="_blank"
-                                                 href="NEW_APP_COMPANY_ABOUT_HREF">NEW_APP_COMPANY_NAME</a>. <br
+                                                 href="NEW_APP_COMPANY_ABOUT_HREF">STUDENT_IO-71</a>. <br
         class="xs-only"/>All rights reserved.
     </small>
   </footer>
