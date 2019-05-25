@@ -6,16 +6,17 @@
  */
 
 module.exports = {
-	
+
 	add: function(req, res) {
-    res.view("theme/add");
-  },
+    	res.view("question/add");
+  	},
 
 	create: function (req, res) {
 
     var name = req.body.name;
+    var author = "test";
 
-    Theme.create({name: name}).exec(function(err, theme) {
+    Question.create({name: name, author: author}).exec(function(err) {
       if(err) {
         res.send(500, {error: "DB error"});
       }
@@ -25,45 +26,46 @@ module.exports = {
 
   },
 
+
+  // TODO
   delete: function (req, res) {
     var Id = req.param('id');
-    Theme.destroy(Id).exec(function (err) {
+    Question.destroy(Id).exec(function (err) {
       if (err) return res.send(500);
-      res.redirect('/theme');
+      res.redirect('/question');
     });
   },
 
+
   index: function (req, res) {
-    Theme.find().sort('id DESC').limit(5).exec(function (err, themes) {
+    Question.find().sort('id DESC').limit(5).exec(function (err, questions) {
       if (err){ return res.send(500);}
-      res.view('theme/index',{
-        themes: themes
+      res.view('question/index',{
+        questions: questions
       });
     });
   },
 
   watch: function (req, res) {
     var Id = req.param('id');
-    console.log(Id);
-    sails.log(Id)
-    Theme.findOne(Id).exec(function (err, theme) {
+    Question.findOne(Id).exec(function (err, question) {
       if (!theme) return res.send(404);
       if (err) return res.send(500);
-      res.view('theme/watch/',{
-        theme: theme
+      res.view('question/watch/',{
+        question: question
       });
     })
   },
 
   page: function (req, res) {
     var page = req.param('page');
-    Theme.find().sort('id DESC').paginate({
+    Question.find().sort('id DESC').paginate({
       page: page,
       limit: 5
-    }).exec(function (err, themes) {
+    }).exec(function (err, questions) {
       if (err) return res.send(500);
       res.view({
-        themes: themes
+        questions: questions
       });
     });
 

@@ -19,6 +19,11 @@ module.exports.routes = {
   'GET /theme/watch/:unused?': 'ThemeController.watch',
   '/theme/add' : 'ThemeController.add',
 
+  '/question/index' : 'QuestionController.index',
+  '/question/watch/:unused?' : 'QuestionController.watch',
+  '/question/add' : 'QuestionController.add',
+
+
   'GET /faq':                { view:   'pages/faq' },
   'GET /legal/terms':        { view:   'pages/legal/terms' },
   'GET /legal/privacy':      { view:   'pages/legal/privacy' },

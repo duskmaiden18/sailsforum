@@ -28,7 +28,7 @@ module.exports = {
       model: "theme"
     },
 
-    discussioons: {
+    discussions: {
       collection: "discussion",
       via: "relatedtoquestion"
     }

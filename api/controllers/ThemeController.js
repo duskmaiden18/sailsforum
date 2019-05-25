@@ -15,7 +15,7 @@ module.exports = {
 
     var name = req.body.name;
 
-    Theme.create({name: name}).exec(function(err, theme) {
+    Theme.create({name: name}).exec(function(err) {
       if(err) {
         res.send(500, {error: "DB error"});
       }
@@ -34,6 +34,8 @@ module.exports = {
   },
 
   index: function (req, res) {
+
+    
     Theme.find().sort('id DESC').limit(5).exec(function (err, themes) {
       if (err){ return res.send(500);}
       res.view('theme/index',{
@@ -42,15 +44,25 @@ module.exports = {
     });
   },
 
-  watch: function (req, res) {
+  watch: async function (req, res) {
     var Id = req.param('id');
-    console.log(Id);
-    sails.log(Id)
-    Theme.findOne(Id).exec(function (err, theme) {
+
+    // Question.find().sort('id DESC').limit(5).exec(function (err, questions) {
+    //   if (err){ return res.send(500);}
+    //   res.view('question/index',{
+    //     questions: questions
+    //   });
+    // });
+
+    var questions = await Question.find();
+    sails.log(questions);
+
+    Theme.findOne(Id).populate('questions').exec(function (err, theme, questions) {
       if (!theme) return res.send(404);
       if (err) return res.send(500);
       res.view('theme/watch/',{
-        theme: theme
+        theme: theme,
+        questions: questions
       });
     })
   },

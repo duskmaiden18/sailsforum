@@ -1,1 +1,30 @@
-<%= theme.id %>
+<div class="container text-center">
+  <h1 class="text-center">Questions related to <%= theme.name %></h1>
+  <a href="/question/add/" class="btn btn-danger">Ask question!</a>
+  <hr>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <% theme.questions.forEach(function (question) { %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3 class="text-center"><%= question.name %></h3>
+            <h5 class="text-center">Asked by: <%= question.author %></h5>
+       		<h5 class="text-center">Answers number: <%= question.answersNumber %></h5>
+          </div>
+          <div class="panel-footer">
+            <a href="/question/watch/?id=<%= question.id %>" class="btn btn-info">Dive in</a>
+            <hr>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+    <div class="col-md-1">
+    </div>
+    <ul class="pagination">
+      <li><a href="/question">1</a></li>
+      <li><a href="/question/2">2</a></li>
+      <li><a href="/question/3">3</a></li>
+    </ul>
+  </div>
+</div>
