@@ -15,7 +15,9 @@ module.exports.routes = {
   //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
   'GET /':                   { action: 'view-homepage-or-redirect' },
 //  'GET /welcome/:unused?':   { action: 'dashboard/view-welcome' },
-  'GET /welcome/:unused?':   { action: 'test-controllers/view-themes' },
+  'GET /welcome/:unused?':   'ThemeController.index',
+  'GET /theme/watch/:unused?': 'ThemeController.watch',
+  '/theme/add' : 'ThemeController.add',
 
   'GET /faq':                { view:   'pages/faq' },
   'GET /legal/terms':        { view:   'pages/legal/terms' },
@@ -40,7 +42,15 @@ module.exports.routes = {
   //  ╩ ╩╩╚═╝╚═╝  ╩╚═╚═╝═╩╝╩╩╚═╚═╝╚═╝ ╩ ╚═╝  └┘   ═╩╝╚═╝╚╩╝╝╚╝╩═╝╚═╝╩ ╩═╩╝╚═╝
   '/terms':                   '/legal/terms',
   '/logout':                  '/api/v1/account/logout',
+  'post /theme/create': {
+    controller: 'theme',
+    action: 'create'
+  },
 
+  'get /theme/delete/:id': {
+    controller: 'theme',
+    action: 'delete'
+  },
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

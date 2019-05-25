@@ -8,9 +8,9 @@
  * http://github.com/frostme/sails-seed
  */
 module.exports.seeds = {
-  theme: [
-    {
-      name: "test_02",
-    }
-  ]
-};
+	theme: [
+		{
+			name: "hello"
+		}
+	]
+}
