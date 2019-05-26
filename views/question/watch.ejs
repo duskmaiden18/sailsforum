@@ -1,0 +1,23 @@
+<div class="container text-center">
+  <h1 class="text-center">Answers to: 
+  <br> 
+  <%= question.name %></h1>
+  <a href="/discussion/add/" class="btn btn-danger">I know an answer!</a>
+  <hr>
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <% question.discussions.forEach(function (discussion) { %>
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h3 class="text-center"><%= discussion.body %></h3>
+            <h5 class="text-center">Answered by: <%= discussion.author %></h5>
+          </div>
+          <div class="panel-footer">
+            <hr>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</div>

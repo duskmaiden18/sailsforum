@@ -15,14 +15,21 @@ module.exports.routes = {
   //  ╚╩╝╚═╝╚═╝╩  ╩ ╩╚═╝╚═╝╚═╝
   'GET /':                   { action: 'view-homepage-or-redirect' },
 //  'GET /welcome/:unused?':   { action: 'dashboard/view-welcome' },
+
+// THEMES
   'GET /welcome/:unused?':   'ThemeController.index',
   'GET /theme/watch/:unused?': 'ThemeController.watch',
   '/theme/add' : 'ThemeController.add',
 
-  '/question/index' : 'QuestionController.index',
-  '/question/watch/:unused?' : 'QuestionController.watch',
+
+// QUESTUIONS
+  // '/question/index' : 'QuestionController.index',
+  'GET /question/watch/:unused?' : 'QuestionController.watch',
   '/question/add' : 'QuestionController.add',
 
+
+// DISCUSSIONS
+  '/discussion/add' : 'DiscussionController.add',
 
   'GET /faq':                { view:   'pages/faq' },
   'GET /legal/terms':        { view:   'pages/legal/terms' },
@@ -55,6 +62,21 @@ module.exports.routes = {
   'get /theme/delete/:id': {
     controller: 'theme',
     action: 'delete'
+  },
+
+  'post /question/create': {
+    controller: 'question',
+    action: 'create'
+  },
+
+  'get /question/delete/:id': {
+    controller: 'question',
+    action: 'delete'
+  },
+
+  'post /discussion/create': {
+    controller: 'discussion',
+    action: 'create'
   },
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗

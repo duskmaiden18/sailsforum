@@ -12,14 +12,11 @@ module.exports = {
   },
 
 	create: function (req, res) {
-
     var name = req.body.name;
-
     Theme.create({name: name}).exec(function(err) {
       if(err) {
         res.send(500, {error: "DB error"});
       }
-
       res.redirect("/welcome");
     })
 
@@ -36,7 +33,7 @@ module.exports = {
   index: function (req, res) {
 
     
-    Theme.find().sort('id DESC').limit(5).exec(function (err, themes) {
+    Theme.find().sort('id DESC').exec(function (err, themes) {
       if (err){ return res.send(500);}
       res.view('theme/index',{
         themes: themes
@@ -54,32 +51,39 @@ module.exports = {
     //   });
     // });
 
+
+
     var questions = await Question.find();
     sails.log(questions);
+    
+    var themeRec = await Theme.find(Id).limit(1);
+    req.session.themeId = themeRec[0].id;
 
     Theme.findOne(Id).populate('questions').exec(function (err, theme, questions) {
       if (!theme) return res.send(404);
       if (err) return res.send(500);
-      res.view('theme/watch/',{
+      res.view('theme/watch',{
         theme: theme,
-        questions: questions
+        questions: questions,
       });
     })
+    // var themeRec = await Theme.findOne(Id);
+    // req.session.themeId = themeRec.id;
   },
 
-  page: function (req, res) {
-    var page = req.param('page');
-    Theme.find().sort('id DESC').paginate({
-      page: page,
-      limit: 5
-    }).exec(function (err, themes) {
-      if (err) return res.send(500);
-      res.view({
-        themes: themes
-      });
-    });
+  // page: function (req, res) {
+  //   var page = req.param('page');
+  //   Theme.find().sort('id DESC').paginate({
+  //     page: page,
+  //     limit: 5
+  //   }).exec(function (err, themes) {
+  //     if (err) return res.send(500);
+  //     res.view({
+  //       themes: themes
+  //     });
+  //   });
 
-  }
+  // }
   
 
 };

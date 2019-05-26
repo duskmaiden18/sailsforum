@@ -12,16 +12,14 @@ module.exports = {
   	},
 
 	create: function (req, res) {
-
     var name = req.body.name;
-    var author = "test";
-
-    Question.create({name: name, author: author}).exec(function(err) {
+    var author = req.session.userId;
+    var theme = req.session.themeId;
+    Question.create({name: name, author: author, answersNumber: 0, relatedtotheme: theme}).exec(function(err) {
       if(err) {
         res.send(500, {error: "DB error"});
       }
-
-      res.redirect("/welcome");
+      res.redirect("/theme/watch/?id=" + req.session.themeId);
     })
 
   },
@@ -37,22 +35,29 @@ module.exports = {
   },
 
 
-  index: function (req, res) {
-    Question.find().sort('id DESC').limit(5).exec(function (err, questions) {
-      if (err){ return res.send(500);}
-      res.view('question/index',{
-        questions: questions
-      });
-    });
-  },
+  // index: function (req, res) {
+  //   Question.find().sort('id DESC').limit(5).exec(function (err, questions) {
+  //     if (err){ return res.send(500);}
+  //     res.view('question/index',{
+  //       questions: questions
+  //     });
+  //   });
+  // },
 
-  watch: function (req, res) {
+  watch: async function (req, res) {
     var Id = req.param('id');
-    Question.findOne(Id).exec(function (err, question) {
-      if (!theme) return res.send(404);
+
+    var discussions = await Discussion.find();
+
+    var questionRec = await Question.find(Id).limit(1);
+    req.session.questionId = questionRec[0].id;
+
+    Question.findOne(Id).populate("discussions").exec(function (err, question, discussions) {
+      if (!question) return res.send(404);
       if (err) return res.send(500);
       res.view('question/watch/',{
-        question: question
+        question: question,
+        discussions: discussions
       });
     })
   },
