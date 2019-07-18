@@ -15,8 +15,8 @@ module.exports = {
     var author = req.session.userId;
     var question = req.session.questionId;
 
-    var currentNumber = await Question.find({id:question.id}).limit(1)[0].answersNumber;
-    await Question.updateOne({answersNumber : currentNumber}).set({answersNumber : currentNumber + 1})
+    var currentNumber = await Question.findOne({id:question});
+    await Question.updateOne({id : currentNumber.id}).set({answersNumber : currentNumber.answersNumber + 1})
 
     Discussion.create({body : body, author: author, relatedtoquestion: question}).exec(function(err) {
       if(err) {
